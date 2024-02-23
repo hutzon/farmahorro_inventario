@@ -47,11 +47,19 @@ class ProductoController extends Controller
     {
         request()->validate(Producto::$rules);
 
-        $producto = Producto::create($request->all());
+        // Crear un nuevo producto con los datos del formulario
+        $producto = new Producto($request->all());
+
+        // Establecer el stock en 0
+        $producto->stock = 0;
+
+        // Guardar el producto
+        $producto->save();
 
         return redirect()->route('productos.index')
-            ->with('success', 'Producto created successfully.');
+            ->with('success', 'Producto creado exitosamente.');
     }
+
 
     /**
      * Display the specified resource.

@@ -5,8 +5,8 @@
 @endsection
 
 @section('content')
-    <section class="content container-fluid">
-        <div class="row">
+    <section class="content container-fluid ">
+        <div class="row ">
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
@@ -19,7 +19,7 @@
                     </div>
 
                     <div class="card-body">
-                        
+
                         <div class="form-group">
                             <strong>Nombre:</strong>
                             {{ $categoria->nombre }}

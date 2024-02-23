@@ -24,14 +24,13 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Producto extends Model
 {
-    
+
     static $rules = [
 		'nombre' => 'required',
 		'principio_activo' => 'required',
 		'categoria_id' => 'required',
 		'presentacion' => 'required',
 		'miligramos' => 'required',
-		'stock' => 'required',
     ];
 
     protected $perPage = 20;
@@ -51,7 +50,7 @@ class Producto extends Model
     {
         return $this->hasOne('App\Models\Categoria', 'id', 'categoria_id');
     }
-    
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
@@ -59,6 +58,6 @@ class Producto extends Model
     {
         return $this->hasMany('App\Models\Lote', 'producto_id', 'id');
     }
-    
+
 
 }

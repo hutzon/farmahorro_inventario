@@ -28,11 +28,11 @@
             {{ Form::text('miligramos', $producto->miligramos, ['class' => 'form-control' . ($errors->has('miligramos') ? ' is-invalid' : ''), 'placeholder' => 'Miligramos']) }}
             {!! $errors->first('miligramos', '<div class="invalid-feedback">:message</div>') !!}
         </div>
-        <div class="form-group">
+        {{-- <div class="form-group">
             {{ Form::label('stock') }}
             {{ Form::text('stock', $producto->stock, ['class' => 'form-control' . ($errors->has('stock') ? ' is-invalid' : ''), 'placeholder' => 'Stock']) }}
             {!! $errors->first('stock', '<div class="invalid-feedback">:message</div>') !!}
-        </div>
+        </div> --}}
 
     </div>
     <div class="box-footer mt20">

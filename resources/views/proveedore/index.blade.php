@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('template_title')
-    Proveedor
+    Proveedore
 @endsection
 
 @section('content')
@@ -13,7 +13,7 @@
                         <div style="display: flex; justify-content: space-between; align-items: center;">
 
                             <span id="card_title">
-                                {{ __('Proveedor') }}
+                                {{ __('Proveedore') }}
                             </span>
 
                              <div class="float-right">
@@ -37,6 +37,8 @@
                                         <th>No</th>
 
 										<th>Nombre</th>
+										<th>Telefono</th>
+										<th>Direccion</th>
 
                                         <th></th>
                                     </tr>
@@ -47,8 +49,10 @@
                                             <td>{{ ++$i }}</td>
 
 											<td>{{ $proveedore->nombre }}</td>
+											<td>{{ $proveedore->telefono }}</td>
+											<td>{{ $proveedore->direccion }}</td>
 
-                                            <td>
+                                            <td class="text-end">
                                                 <form action="{{ route('proveedores.destroy',$proveedore->id) }}" method="POST">
                                                     <a class="btn btn-sm btn-primary " href="{{ route('proveedores.show',$proveedore->id) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Show') }}</a>
                                                     <a class="btn btn-sm btn-success" href="{{ route('proveedores.edit',$proveedore->id) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Edit') }}</a>

@@ -47,12 +47,24 @@ class LoteController extends Controller
      */
     public function store(Request $request)
     {
-        request()->validate(Lote::$rules);
+        // Validación de la solicitud...
 
-        $lote = Lote::create($request->all());
+        // Crear y guardar el lote
+        $lote = new Lote();
+        $lote->producto_id = $request->input('producto_id');
+        $lote->proveedor_id = $request->input('proveedor_id');
+        $lote->fecha_ingreso = $request->input('fecha_ingreso');
+        $lote->fecha_caducidad = $request->input('fecha_caducidad');
+        $lote->cantidad = $request->input('cantidad');
+        $lote->save();
 
-        return redirect()->route('lotes.index')
-            ->with('success', 'Lote created successfully.');
+        // Actualizar el stock en la tabla de productos
+        $producto = Producto::findOrFail($lote->producto_id);
+        $producto->stock += $lote->cantidad;
+        $producto->save();
+
+        // Redireccionar o responder según sea necesario
+        return redirect()->route('lotes.index')->with('success', 'Lote agregado y stock actualizado correctamente');
     }
 
     /**
@@ -92,13 +104,21 @@ class LoteController extends Controller
      */
     public function update(Request $request, Lote $lote)
     {
-        request()->validate(Lote::$rules);
+        $cantidadOriginal = $lote->cantidad;
 
+        // Actualizar el lote
         $lote->update($request->all());
 
+        // Calcular la diferencia y actualizar el stock del producto
+        $diferencia = $lote->cantidad - $cantidadOriginal;
+        $producto = Producto::findOrFail($lote->producto_id);
+        $producto->stock += $diferencia;
+        $producto->save();
+
         return redirect()->route('lotes.index')
-            ->with('success', 'Lote updated successfully');
+            ->with('success', 'Lote actualizado y stock de producto actualizado correctamente');
     }
+
 
     /**
      * @param int $id
@@ -107,9 +127,18 @@ class LoteController extends Controller
      */
     public function destroy($id)
     {
-        $lote = Lote::find($id)->delete();
+        $lote = Lote::findOrFail($id);
+        $producto = Producto::findOrFail($lote->producto_id);
+
+        // Disminuir el stock del producto
+        $producto->stock -= $lote->cantidad;
+        $producto->save();
+
+        // Eliminar el lote
+        $lote->delete();
 
         return redirect()->route('lotes.index')
-            ->with('success', 'Lote deleted successfully');
+            ->with('success', 'Lote eliminado y stock de producto actualizado correctamente');
     }
+
 }

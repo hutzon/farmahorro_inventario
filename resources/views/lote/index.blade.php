@@ -56,7 +56,7 @@
 											<td>{{ $lote->fecha_caducidad }}</td>
 											<td>{{ $lote->cantidad }}</td>
 
-                                            <td>
+                                            <td class="text-end">
                                                 <form action="{{ route('lotes.destroy',$lote->id) }}" method="POST">
                                                     <a class="btn btn-sm btn-primary " href="{{ route('lotes.show',$lote->id) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Show') }}</a>
                                                     <a class="btn btn-sm btn-success" href="{{ route('lotes.edit',$lote->id) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Edit') }}</a>

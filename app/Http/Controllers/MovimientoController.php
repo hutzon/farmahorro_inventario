@@ -93,7 +93,7 @@ public function vender(Request $request)
         DB::commit();
 
         // Redirigir con éxito o devolver una respuesta positiva
-        return redirect()->route('ruta.deseada')->with('success', 'Venta realizada con éxito');
+        return redirect()->route('movimientos.index')->with('success', 'Venta realizada con éxito');
     } catch (Exception $e) {
         DB::rollBack();
 

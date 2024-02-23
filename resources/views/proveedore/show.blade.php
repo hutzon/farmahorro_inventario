@@ -24,6 +24,14 @@
                             <strong>Nombre:</strong>
                             {{ $proveedore->nombre }}
                         </div>
+                        <div class="form-group">
+                            <strong>Telefono:</strong>
+                            {{ $proveedore->telefono }}
+                        </div>
+                        <div class="form-group">
+                            <strong>Direccion:</strong>
+                            {{ $proveedore->direccion }}
+                        </div>
 
                     </div>
                 </div>

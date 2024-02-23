@@ -9,6 +9,8 @@ use Illuminate\Database\Eloquent\Model;
  *
  * @property $id
  * @property $nombre
+ * @property $telefono
+ * @property $direccion
  * @property $created_at
  * @property $updated_at
  *
@@ -21,6 +23,8 @@ class Proveedore extends Model
     
     static $rules = [
 		'nombre' => 'required',
+		'telefono' => 'required',
+		'direccion' => 'required',
     ];
 
     protected $perPage = 20;
@@ -30,7 +34,7 @@ class Proveedore extends Model
      *
      * @var array
      */
-    protected $fillable = ['nombre'];
+    protected $fillable = ['nombre','telefono','direccion'];
 
 
     /**

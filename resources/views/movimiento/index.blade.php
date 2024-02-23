@@ -35,7 +35,7 @@
                                 <thead class="thead">
                                     <tr>
                                         <th>No</th>
-                                        
+
 										<th>Lote Id</th>
 										<th>Tipo</th>
 										<th>Cantidad</th>
@@ -49,14 +49,14 @@
                                     @foreach ($movimientos as $movimiento)
                                         <tr>
                                             <td>{{ ++$i }}</td>
-                                            
+
 											<td>{{ $movimiento->lote_id }}</td>
 											<td>{{ $movimiento->tipo }}</td>
 											<td>{{ $movimiento->cantidad }}</td>
 											<td>{{ $movimiento->fecha }}</td>
 											<td>{{ $movimiento->descripcion }}</td>
 
-                                            <td>
+                                            <td class="text-end">
                                                 <form action="{{ route('movimientos.destroy',$movimiento->id) }}" method="POST">
                                                     <a class="btn btn-sm btn-primary " href="{{ route('movimientos.show',$movimiento->id) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Show') }}</a>
                                                     <a class="btn btn-sm btn-success" href="{{ route('movimientos.edit',$movimiento->id) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Edit') }}</a>
