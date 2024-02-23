@@ -1,5 +1,6 @@
 <div class="box box-info padding-1">
     <div class="box-body">
+
         <div class="form-group">
             {{ Form::label('lote_id') }}
             {{ Form::select('lote_id',$lotes ,$movimiento->lote_id, ['class' => 'form-control' . ($errors->has('lote_id') ? ' is-invalid' : ''), 'placeholder' => 'Seleccione un Id']) }}

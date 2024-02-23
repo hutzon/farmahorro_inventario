@@ -16,7 +16,7 @@
                         <span class="card-title">{{ __('Create') }} Movimiento</span>
                     </div>
                     <div class="card-body">
-                        <form method="POST" action="{{ route('movimientos.store') }}"  role="form" enctype="multipart/form-data">
+                        <form method="POST" action="{{ route('movimientos.vender') }}"  role="form" enctype="multipart/form-data">
                             @csrf
 
                             @include('movimiento.form')

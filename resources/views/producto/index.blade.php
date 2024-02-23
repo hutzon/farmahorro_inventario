@@ -35,10 +35,10 @@
                                 <thead class="thead">
                                     <tr>
                                         <th>No</th>
-                                        
+
 										<th>Nombre</th>
 										<th>Principio Activo</th>
-										<th>Categoria Id</th>
+										<th>Categoria</th>
 										<th>Presentacion</th>
 										<th>Miligramos</th>
 										<th>Stock</th>
@@ -50,10 +50,10 @@
                                     @foreach ($productos as $producto)
                                         <tr>
                                             <td>{{ ++$i }}</td>
-                                            
+
 											<td>{{ $producto->nombre }}</td>
 											<td>{{ $producto->principio_activo }}</td>
-											<td>{{ $producto->categoria_id }}</td>
+											<td>{{ $producto->categoria->nombre }}</td>
 											<td>{{ $producto->presentacion }}</td>
 											<td>{{ $producto->miligramos }}</td>
 											<td>{{ $producto->stock }}</td>

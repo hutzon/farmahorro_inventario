@@ -19,10 +19,11 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::resource('categorias', App\Http\Controllers\CategoriaController::class);
-Route::resource('proveedores', App\Http\Controllers\ProveedoreController::class);
-Route::resource('productos', App\Http\Controllers\ProductoController::class);
-Route::resource('lotes', App\Http\Controllers\LoteController::class);
-Route::resource('movimientos', App\Http\Controllers\MovimientoController::class);
+Route::resource('categorias', App\Http\Controllers\CategoriaController::class)->middleware('auth');
+Route::resource('proveedores', App\Http\Controllers\ProveedoreController::class)->middleware('auth');
+Route::resource('productos', App\Http\Controllers\ProductoController::class)->middleware('auth');
+Route::resource('lotes', App\Http\Controllers\LoteController::class)->middleware('auth');
+Route::resource('movimientos', App\Http\Controllers\MovimientoController::class)->middleware('auth');
+Route::post('movimientos/vender', [ App\Http\Controllers\MovimientoController::class, 'vender'])->name('movimientos.vender')->middleware('auth');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

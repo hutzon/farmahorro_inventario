@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('template_title')
-    Proveedore
+    Proveedor
 @endsection
 
 @section('content')
@@ -13,7 +13,7 @@
                         <div style="display: flex; justify-content: space-between; align-items: center;">
 
                             <span id="card_title">
-                                {{ __('Proveedore') }}
+                                {{ __('Proveedor') }}
                             </span>
 
                              <div class="float-right">
@@ -35,7 +35,7 @@
                                 <thead class="thead">
                                     <tr>
                                         <th>No</th>
-                                        
+
 										<th>Nombre</th>
 
                                         <th></th>
@@ -45,7 +45,7 @@
                                     @foreach ($proveedores as $proveedore)
                                         <tr>
                                             <td>{{ ++$i }}</td>
-                                            
+
 											<td>{{ $proveedore->nombre }}</td>
 
                                             <td>

@@ -35,9 +35,9 @@
                                 <thead class="thead">
                                     <tr>
                                         <th>No</th>
-                                        
-										<th>Producto Id</th>
-										<th>Proveedor Id</th>
+
+										<th>Producto</th>
+										<th>Proveedor</th>
 										<th>Fecha Ingreso</th>
 										<th>Fecha Caducidad</th>
 										<th>Cantidad</th>
@@ -49,9 +49,9 @@
                                     @foreach ($lotes as $lote)
                                         <tr>
                                             <td>{{ ++$i }}</td>
-                                            
-											<td>{{ $lote->producto_id }}</td>
-											<td>{{ $lote->proveedor_id }}</td>
+
+											<td>{{ $lote->producto->nombre }}</td>
+											<td>{{ $lote->proveedore->nombre }}</td>
 											<td>{{ $lote->fecha_ingreso }}</td>
 											<td>{{ $lote->fecha_caducidad }}</td>
 											<td>{{ $lote->cantidad }}</td>

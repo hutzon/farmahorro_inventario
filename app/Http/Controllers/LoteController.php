@@ -77,8 +77,10 @@ class LoteController extends Controller
     public function edit($id)
     {
         $lote = Lote::find($id);
+        $productos = Producto::pluck('nombre','id');
+        $proveedores = Proveedore::pluck('nombre','id');
 
-        return view('lote.edit', compact('lote'));
+        return view('lote.edit', compact('lote', 'productos', 'proveedores'));
     }
 
     /**
