@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Lote;
 use Illuminate\Http\Request;
+
+use Carbon\Carbon;
 
 class HomeController extends Controller
 {
@@ -21,8 +24,20 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
+
     public function index()
     {
-        return view('home');
+        $fechaHoy = Carbon::now();
+        $unMesDespues = $fechaHoy->copy()->addMonth();
+        $quinceDiasAtras = $fechaHoy->copy()->subDays(15);
+
+        $lotes = Lote::where(function ($query) use ($fechaHoy, $unMesDespues, $quinceDiasAtras) {
+            $query->where('fecha_caducidad', '>=', $quinceDiasAtras)
+                ->where('fecha_caducidad', '<=', $unMesDespues);
+        })->get();
+
+        return view('home', compact('lotes', 'fechaHoy'));
     }
+
+
 }
