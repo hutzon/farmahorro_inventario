@@ -2,14 +2,14 @@
     <div class="box-body">
 
         <div class="form-group">
-            {{ Form::label('lote_id') }}
-            {{ Form::select('lote_id',$lotes ,$movimiento->lote_id, ['class' => 'form-control' . ($errors->has('lote_id') ? ' is-invalid' : ''), 'placeholder' => 'Seleccione un Id']) }}
+            {{ Form::label('lote') }}
+            {{ Form::select('lote_id',$lotes ,$movimiento->lote_id, ['class' => 'form-control' . ($errors->has('lote_id') ? ' is-invalid' : ''), 'placeholder' => 'Seleccione un Id ...']) }}
             {!! $errors->first('lote_id', '<div class="invalid-feedback">:message</div>') !!}
         </div>
         <div class="form-group">
             {{ Form::label('tipo') }}
             {{-- {{ Form::text('tipo', $movimiento->tipo, ['class' => 'form-control' . ($errors->has('tipo') ? ' is-invalid' : ''), 'placeholder' => 'Tipo']) }} --}}
-            {{ Form::select('tipo', $tipos, $movimiento->tipo, ['class' => 'form-control' . ($errors->has('tipo') ? ' is-invalid' : ''), 'placeholder' => 'Seleccione un tipo']) }}
+            {{ Form::select('tipo', $tipos, $movimiento->tipo, ['class' => 'form-control' . ($errors->has('tipo') ? ' is-invalid' : ''), 'placeholder' => 'Seleccione un tipo ...']) }}
             {!! $errors->first('tipo', '<div class="invalid-feedback">:message</div>') !!}
         </div>
         <div class="form-group">

@@ -6,8 +6,8 @@
 
 @section('content')
     <section class="content container-fluid">
-        <div class="">
-            <div class="col-md-12">
+        <div class="d-flex justify-content-center">
+            <div class="col-md-10">
 
                 @includeif('partials.errors')
 

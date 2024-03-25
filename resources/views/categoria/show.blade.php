@@ -1,20 +1,20 @@
 @extends('layouts.app')
 
 @section('template_title')
-    {{ $categoria->name ?? "{{ __('Show') Categoria" }}
+    {{ $categoria->name ?? "{{ __('Ver') Categoria" }}
 @endsection
 
 @section('content')
     <section class="content container-fluid ">
-        <div class="row ">
-            <div class="col-md-12">
+        <div class="row d-flex justify-content-center">
+            <div class="col-md-10">
                 <div class="card">
                     <div class="card-header">
                         <div class="float-left">
-                            <span class="card-title">{{ __('Show') }} Categoria</span>
+                            <span class="card-title">{{ __('Ver') }} Categoria</span>
                         </div>
                         <div class="float-right">
-                            <a class="btn btn-primary" href="{{ route('categorias.index') }}"> {{ __('Back') }}</a>
+                            <a class="btn btn-primary" href="{{ route('categorias.index') }}"> {{ __('Regresar') }}</a>
                         </div>
                     </div>
 

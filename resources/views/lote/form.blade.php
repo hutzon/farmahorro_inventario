@@ -3,14 +3,14 @@
 
 
         <div class="form-group">
-            {{ Form::label('producto_id') }}
-            {{ Form::select('producto_id',$productos ,$lote->producto_id, ['class' => 'form-control' . ($errors->has('producto_id') ? ' is-invalid' : ''), 'placeholder' => 'Producto Id']) }}
+            {{ Form::label('producto') }}
+            {{ Form::select('producto_id',$productos ,$lote->producto_id, ['class' => 'form-control' . ($errors->has('producto_id') ? ' is-invalid' : ''), 'placeholder' => 'Seleccionar producto ...']) }}
             {!! $errors->first('producto_id', '<div class="invalid-feedback">:message</div>') !!}
         </div>
 
         <div class="form-group">
-            {{ Form::label('proveedor_id') }}
-            {{ Form::select('proveedor_id',$proveedores ,$lote->proveedor_id, ['class' => 'form-control' . ($errors->has('proveedor_id') ? ' is-invalid' : ''), 'placeholder' => 'Proveedor Id']) }}
+            {{ Form::label('proveedor') }}
+            {{ Form::select('proveedor_id',$proveedores ,$lote->proveedor_id, ['class' => 'form-control' . ($errors->has('proveedor_id') ? ' is-invalid' : ''), 'placeholder' => 'Seleccionar proveedor ...']) }}
             {!! $errors->first('proveedor_id', '<div class="invalid-feedback">:message</div>') !!}
         </div>
         <div class="form-group">

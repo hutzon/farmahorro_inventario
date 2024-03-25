@@ -13,8 +13,7 @@
     <link rel="dns-prefetch" href="//fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
 
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/2.0.2/css/dataTables.bootstrap5.css">
+
 
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
@@ -109,21 +108,5 @@
             @yield('content')
         </main>
     </div>
-
-    <!-- Primero, jQuery -->
-    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
-
-    <!-- Luego, Bootstrap JS y DataTables -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.datatables.net/2.0.2/js/jquery.dataTables.js"></script>
-    <script src="https://cdn.datatables.net/2.0.2/js/dataTables.bootstrap5.js"></script>
-
-    <!-- Finalmente, tu script personalizado -->
-    <script>
-        $(document).ready(function() {
-            $('#tabla_lotes').DataTable();
-        });
-    </script>
-
 </body>
 </html>
