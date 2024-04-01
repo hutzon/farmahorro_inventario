@@ -18,13 +18,36 @@ class LoteController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        $lotes = Lote::paginate();
+ public function index(Request $request)
+{
+    $search = $request->get('search');
+    $date = $request->get('date'); // Si deseas buscar por fecha
 
-        return view('lote.index', compact('lotes'))
-            ->with('i', (request()->input('page', 1) - 1) * $lotes->perPage());
+    $query = Lote::query();
+
+    if ($search) {
+        $query->where('id', 'like', "%{$search}%") // Asegúrate de que 'numero_lote' es el nombre correcto de la columna para el número de lote
+            ->orWhereHas('producto', function ($query) use ($search) {
+                $query->where('nombre', 'like', "%{$search}%");
+            })
+            ->orWhereHas('proveedore', function ($query) use ($search) { // Cambiado de 'proveedor' a 'proveedore'
+                $query->where('nombre', 'like', "%{$search}%");
+            });
     }
+
+    // Si se pasa una fecha en la búsqueda
+    if ($date) {
+        $query->whereDate('fecha_ingreso', $date)
+            ->orWhereDate('fecha_caducidad', $date);
+    }
+
+    $lotes = $query->paginate(10);
+
+    return view('lote.index', compact('lotes'))
+        ->with('i', (request()->input('page', 1) - 1) * $lotes->perPage());
+}
+
+
 
 
     /**

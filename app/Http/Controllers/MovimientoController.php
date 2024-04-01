@@ -20,13 +20,32 @@ class MovimientoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $movimientos = Movimiento::paginate();
+        $query = Movimiento::query();
+
+        $search = $request->get('search');
+        $fecha = $request->get('fecha');
+
+        if ($search) {
+            $query->where(function ($q) use ($search) {
+                $q->where('lote_id', 'like', "%{$search}%")
+                ->orWhere('tipo', 'like', "%{$search}%")
+                ->orWhere('cantidad', 'like', "%{$search}%")
+                ->orWhere('descripcion', 'like', "%{$search}%");
+            });
+        }
+
+        if ($fecha) {
+            $query->whereDate('fecha', $fecha);
+        }
+
+        $movimientos = $query->paginate(10);
 
         return view('movimiento.index', compact('movimientos'))
-            ->with('i', (request()->input('page', 1) - 1) * $movimientos->perPage());
+                ->with('i', (request()->input('page', 1) - 1) * $movimientos->perPage());
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -37,7 +56,7 @@ class MovimientoController extends Controller
     {
         $movimiento = new Movimiento();
          $lotes = Lote::pluck('id','id'); // Asumiendo que quieres mostrar el ID del lote
-        $tipos = ['entrada' => 'Entrada', 'salida' => 'Salida'];
+        $tipos = ['salida' => 'Salida'];
         return view('movimiento.create', compact('movimiento','lotes','tipos'));
     }
 
@@ -126,7 +145,7 @@ public function vender(Request $request)
     {
         $movimiento = Movimiento::find($id);
         $lotes = Lote::pluck('id','id');
-        $tipos = ['entrada' => 'Entrada', 'salida' => 'Salida'];
+        $tipos = ['salida' => 'Salida'];
         return view('movimiento.edit', compact('movimiento','lotes','tipos'));
     }
 

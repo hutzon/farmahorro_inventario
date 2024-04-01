@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('principio_activo');
             $table->bigInteger('categoria_id')->unsigned();
             $table->string('presentacion');
-            $table->decimal('miligramos',8,2);
+            $table->string('miligramos');
             $table->integer('stock')->default(0);
             $table->timestamps();
 

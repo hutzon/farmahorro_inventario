@@ -17,9 +17,22 @@ class ProductoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $productos = Producto::paginate();
+
+        $search = $request->get('search');
+
+        if ($search) {
+            $productos = Producto::where('nombre', 'like', "%{$search}%")
+                                    ->orWhere('principio_activo', 'like', "%{$search}%")
+                                    ->orWhere('presentacion', 'like', "%{$search}%")
+                                    ->orWhereHas('categoria', function ($query) use ($search) {
+                                        $query->where('nombre', 'like', "%{$search}%");
+                                    })
+                                    ->paginate(10);
+        } else {
+            $productos = Producto::paginate(10);
+        }
 
         return view('producto.index', compact('productos'))
             ->with('i', (request()->input('page', 1) - 1) * $productos->perPage());

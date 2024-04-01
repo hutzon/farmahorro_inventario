@@ -16,6 +16,15 @@
                                 {{ __('Movimiento') }}
                             </span>
 
+                            <form action="{{ route('movimientos.index') }}" method="GET">
+                                <div class="input-group">
+                                    <input type="text" class="form-control me-2" name="search" placeholder="Buscar movimientos...">
+                                    <input type="date" class="form-control me-2" name="fecha">
+                                    <button type="submit" class="btn btn-primary">Buscar</button>
+                                </div>
+                            </form>
+
+
                              <div class="float-right">
                                 <a href="{{ route('movimientos.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
                                   {{ __('Crear Nuevo') }}

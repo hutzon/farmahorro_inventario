@@ -23,7 +23,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Lote extends Model
 {
-    
+
     static $rules = [
 		'producto_id' => 'required',
 		'proveedor_id' => 'required',
@@ -49,7 +49,7 @@ class Lote extends Model
     {
         return $this->hasOne('App\Models\Producto', 'id', 'producto_id');
     }
-    
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
@@ -57,6 +57,6 @@ class Lote extends Model
     {
         return $this->hasOne('App\Models\Proveedore', 'id', 'proveedor_id');
     }
-    
+
 
 }

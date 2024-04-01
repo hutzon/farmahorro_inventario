@@ -16,6 +16,19 @@
                                 {{ __('Proveedores') }}
                             </span>
 
+                            <form action="{{ route('proveedores.index') }}" method="GET">
+                                <div class="form-row align-items-center">
+                                    <div class="col my-2 mx-5">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" name="search" placeholder="Buscar proveedores...">
+                                            <div class="ms-2 input-group-append">
+                                                <button type="submit" class="btn btn-primary">Buscar</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+
                              <div class="float-right">
                                 <a href="{{ route('proveedores.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
                                   {{ __('Crear Nuevo') }}

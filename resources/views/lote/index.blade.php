@@ -16,6 +16,21 @@
                                 {{ __('Lote') }}
                             </span>
 
+                            <form action="{{ route('lotes.index') }}" method="GET">
+                            <div class="form-row align-items-center">
+                                <div class="col my-2 mx-5">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control me-2" name="search" placeholder="Buscar lotes...">
+                                        <input type="date" class="form-control me-2" name="date" placeholder="Fecha...">
+                                        <div class="input-group-append">
+                                            <button type="submit" class="btn btn-primary">Buscar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+</form>
+
+
                              <div class="float-right">
                                 <a href="{{ route('lotes.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
                                   {{ __('Crear Nuevo') }}
@@ -36,6 +51,7 @@
                                     <tr>
                                         <th>No</th>
 
+										<th>No. Lote</th>
 										<th>Producto</th>
 										<th>Proveedor</th>
 										<th>Fecha Ingreso</th>
@@ -50,6 +66,7 @@
                                         <tr>
                                             <td>{{ ++$i }}</td>
 
+											<td>{{ $lote->id }}</td>
 											<td>{{ $lote->producto->nombre }}</td>
 											<td>{{ $lote->proveedore->nombre }}</td>
 											<td>{{ $lote->fecha_ingreso }}</td>

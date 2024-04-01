@@ -16,9 +16,20 @@ class ProveedoreController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $proveedores = Proveedore::paginate();
+
+        $search = $request->get('search');
+
+        if ($search) {
+            $proveedores = Proveedore::where('nombre', 'like', "%{$search}%")
+                                    ->orWhere('telefono', 'like', "%{$search}%")
+                                    ->orWhere('direccion', 'like', "%{$search}%")
+                                    ->paginate(10);
+        } else {
+            $proveedores = Proveedore::paginate(10);
+        }
+
 
         return view('proveedore.index', compact('proveedores'))
             ->with('i', (request()->input('page', 1) - 1) * $proveedores->perPage());
