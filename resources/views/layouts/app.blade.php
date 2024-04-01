@@ -71,11 +71,7 @@
 
 
                         @else
-                              @if (Route::has('register'))
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="{{ route('register') }}">{{ __('Registrar') }}</a>
-                                        </li>
-                                    @endif
+
 
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -99,6 +95,7 @@
                             </li>
 
                         @endguest
+
                     </ul>
                 </div>
             </div>

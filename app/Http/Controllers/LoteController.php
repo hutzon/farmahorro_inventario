@@ -41,6 +41,9 @@ class LoteController extends Controller
             ->orWhereDate('fecha_caducidad', $date);
     }
 
+    // Añadir ordenación por fecha
+    $query->orderBy('fecha_ingreso', 'desc');
+
     $lotes = $query->paginate(10);
 
     return view('lote.index', compact('lotes'))

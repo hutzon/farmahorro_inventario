@@ -40,6 +40,9 @@ class MovimientoController extends Controller
             $query->whereDate('fecha', $fecha);
         }
 
+        // Añadir ordenación por fecha
+        $query->orderBy('fecha', 'desc');
+
         $movimientos = $query->paginate(10);
 
         return view('movimiento.index', compact('movimientos'))
