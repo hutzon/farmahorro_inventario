@@ -53,6 +53,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    Rol del usuario: {{ auth()->user()->role }}
                                     @foreach ($categorias as $categoria)
                                         <tr>
                                             <td>{{ ++$i }}</td>
@@ -60,13 +61,17 @@
 											<td>{{ $categoria->nombre }}</td>
 
                                             <td class="text-end">
-                                                <form action="{{ route('categorias.destroy',$categoria->id) }}" method="POST">
-                                                    {{-- <a class="btn btn-sm btn-primary " href="{{ route('categorias.show',$categoria->id) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Ver') }}</a> --}}
-                                                    <a class="btn btn-sm btn-success" href="{{ route('categorias.edit',$categoria->id) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Editar') }}</a>
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> {{ __('Delete') }}</button>
-                                                </form>
+                                                {{-- Muestra siempre el botón de Ver --}}
+                                                <a class="btn btn-sm btn-primary" href="{{ route('categorias.show', $categoria->id) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Ver') }}</a>
+
+                                                @if(auth()->user()->role == 'admin')
+                                                    <a class="btn btn-sm btn-success" href="{{ route('categorias.edit', $categoria->id) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Editar') }}</a>
+                                                    <form action="{{ route('categorias.destroy', $categoria->id) }}" method="POST" style="display: inline-block;">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> {{ __('Eliminar') }}</button>
+                                                    </form>
+                                                @endif
                                             </td>
                                         </tr>
                                     @endforeach

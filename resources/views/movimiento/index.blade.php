@@ -68,10 +68,14 @@
                                             <td class="text-end">
                                                 <form action="{{ route('movimientos.destroy',$movimiento->id) }}" method="POST">
                                                     <a class="btn btn-sm btn-primary " href="{{ route('movimientos.show',$movimiento->id) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Ver') }}</a>
+
                                                     <a class="btn btn-sm btn-success" href="{{ route('movimientos.edit',$movimiento->id) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Editar') }}</a>
                                                     @csrf
                                                     @method('DELETE')
+
+                                                    @if(auth()->user()->role == 'admin')
                                                     <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> {{ __('Eliminar') }}</button>
+                                                    @endif
                                                 </form>
                                             </td>
                                         </tr>

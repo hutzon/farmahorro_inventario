@@ -21,6 +21,7 @@
                                 <div class="col my-2 mx-5">
                                     <div class="input-group">
                                         <input type="text" class="form-control me-2" name="search" placeholder="Buscar lotes...">
+
                                         <input type="date" class="form-control me-2" name="date" placeholder="Fecha...">
                                         <div class="input-group-append">
                                             <button type="submit" class="btn btn-primary">Buscar</button>
@@ -76,10 +77,13 @@
                                             <td class="text-end">
                                                 <form action="{{ route('lotes.destroy',$lote->id) }}" method="POST">
                                                     <a class="btn btn-sm btn-primary " href="{{ route('lotes.show',$lote->id) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Ver') }}</a>
-                                                    <a class="btn btn-sm btn-success" href="{{ route('lotes.edit',$lote->id) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Editar') }}</a>
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> {{ __('Eliminar') }}</button>
+
+                                                    @if(auth()->user()->role == 'admin')
+                                                        <a class="btn btn-sm btn-success" href="{{ route('lotes.edit',$lote->id) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Editar') }}</a>
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> {{ __('Eliminar') }}</button>
+                                                    @endif
                                                 </form>
                                             </td>
                                         </tr>
