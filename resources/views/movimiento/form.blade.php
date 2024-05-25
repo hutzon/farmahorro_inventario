@@ -21,9 +21,9 @@
             {{ Form::text('cantidad', $movimiento->cantidad, ['class' => 'form-control' . ($errors->has('cantidad') ? ' is-invalid' : ''), 'placeholder' => 'Cantidad']) }}
             {!! $errors->first('cantidad', '<div class="invalid-feedback">:message</div>') !!}
         </div>
-        <div class="form-group">
+                <div class="form-group">
             {{ Form::label('fecha') }}
-            {{ Form::date('fecha', $movimiento->fecha, ['class' => 'form-control' . ($errors->has('fecha') ? ' is-invalid' : ''), 'placeholder' => 'Fecha']) }}
+            {{ Form::date('fecha', $movimiento->fecha ? $movimiento->fecha->format('Y-m-d') : null, ['class' => 'form-control' . ($errors->has('fecha') ? ' is-invalid' : ''), 'placeholder' => 'Fecha']) }}
             {!! $errors->first('fecha', '<div class="invalid-feedback">:message</div>') !!}
         </div>
         <div class="form-group">

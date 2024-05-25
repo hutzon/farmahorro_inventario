@@ -9,6 +9,8 @@ use App\Models\Producto;
 use Illuminate\Http\Request;
 use Exception;
 
+use Carbon\Carbon;
+
 /**
  * Class MovimientoController
  * @package App\Http\Controllers
@@ -149,6 +151,7 @@ public function vender(Request $request)
         $movimiento = Movimiento::find($id);
         $lote = $movimiento->lote;
         $productoNombre = $lote ? $lote->producto->nombre : '';
+        $movimiento->fecha = Carbon::parse($movimiento->fecha);
 
         $lotes = Lote::pluck('id','id');
         $tipos = ['salida' => 'Salida'];
