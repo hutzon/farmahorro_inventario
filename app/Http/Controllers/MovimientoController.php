@@ -22,7 +22,7 @@ class MovimientoController extends Controller
      */
     public function index(Request $request)
     {
-        $query = Movimiento::query();
+        $query = Movimiento::query('lote.producto');
 
         $search = $request->get('search');
         $fecha = $request->get('fecha');
@@ -147,9 +147,12 @@ public function vender(Request $request)
     public function edit($id)
     {
         $movimiento = Movimiento::find($id);
+        $lote = $movimiento->lote;
+        $productoNombre = $lote ? $lote->producto->nombre : '';
+
         $lotes = Lote::pluck('id','id');
         $tipos = ['salida' => 'Salida'];
-        return view('movimiento.edit', compact('movimiento','lotes','tipos'));
+        return view('movimiento.edit', compact('movimiento','lotes','tipos', 'productoNombre'));
     }
 
     /**

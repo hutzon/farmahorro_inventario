@@ -3,9 +3,13 @@
 
         <div class="form-group">
             {{ Form::label('lote') }}
-            {{ Form::select('lote_id',$lotes ,$movimiento->lote_id, ['class' => 'form-control' . ($errors->has('lote_id') ? ' is-invalid' : ''), 'placeholder' => 'Seleccione un Id ...']) }}
-            {!! $errors->first('lote_id', '<div class="invalid-feedback">:message</div>') !!}
+            {{ Form::select('lote_id', $lotes, $movimiento->lote_id, ['class' => 'form-control', 'placeholder' => 'Seleccione un Id ...', 'onchange' => 'fetchProductName()', 'id' => 'lote_id']) }}
         </div>
+        <div class="form-group">
+            {{ Form::label('producto', 'Producto') }}
+            {{ Form::text('producto', $productoNombre ?? '', ['class' => 'form-control', 'id' => 'producto', 'readonly' => true]) }}
+        </div>
+
         <div class="form-group">
             {{ Form::label('tipo') }}
             {{-- {{ Form::text('tipo', $movimiento->tipo, ['class' => 'form-control' . ($errors->has('tipo') ? ' is-invalid' : ''), 'placeholder' => 'Tipo']) }} --}}
@@ -33,3 +37,4 @@
         <button type="submit" class="btn btn-primary">{{ __('Submit') }}</button>
     </div>
 </div>
+

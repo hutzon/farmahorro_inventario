@@ -33,4 +33,19 @@
             </div>
         </div>
     </section>
+
+<script>
+function fetchProductName() {
+    var loteId = document.getElementById('lote_id').value;
+
+    fetch(`/api/get-product-name/${loteId}`)
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById('producto').value = data.producto;
+        })
+        .catch(error => console.error('Error:', error));
+}
+</script>
+
+
 @endsection

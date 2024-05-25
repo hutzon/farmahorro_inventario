@@ -27,3 +27,4 @@ Route::resource('movimientos', App\Http\Controllers\MovimientoController::class)
 Route::post('movimientos/vender', [ App\Http\Controllers\MovimientoController::class, 'vender'])->name('movimientos.vender')->middleware('auth');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/api/get-product-name/{id}', [App\Http\Controllers\LoteController::class, 'getProductName']);

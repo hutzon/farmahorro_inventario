@@ -168,4 +168,23 @@ class LoteController extends Controller
             ->with('success', 'Lote eliminado y stock de producto actualizado correctamente');
     }
 
+public function getProductName($id)
+{
+    $lote = Lote::find($id);
+
+    if (!$lote) {
+        return response()->json(['error' => 'Lote no encontrado'], 404);
+    }
+
+    $producto = Producto::find($lote->producto_id);
+
+    if (!$producto) {
+        return response()->json(['error' => 'Producto no encontrado'], 404);
+    }
+
+    return response()->json(['producto' => $producto->nombre]);
+}
+
+
+
 }

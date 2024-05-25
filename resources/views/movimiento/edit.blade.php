@@ -16,11 +16,11 @@
                         <span class="card-title">{{ __('Update') }} Movimiento</span>
                     </div>
                     <div class="card-body">
-                        <form method="POST" action="{{ route('movimientos.update', $movimiento->id) }}"  role="form" enctype="multipart/form-data">
+                        <form method="POST" action="{{ route('movimientos.update', $movimiento->id) }}" role="form" enctype="multipart/form-data">
                             {{ method_field('PATCH') }}
                             @csrf
 
-                            @include('movimiento.form')
+                            @include('movimiento.form', ['productoNombre' => $productoNombre])
 
                         </form>
                     </div>
@@ -28,4 +28,17 @@
             </div>
         </div>
     </section>
+
+    <script>
+    function fetchProductName() {
+        var loteId = document.getElementById('lote_id').value;
+
+        fetch(`/api/get-product-name/${loteId}`)
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('producto').value = data.producto;
+            })
+            .catch(error => console.error('Error:', error));
+    }
+    </script>
 @endsection
